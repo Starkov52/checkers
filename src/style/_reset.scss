@@ -1,0 +1,79 @@
+/* reset.scss */
+
+/* Убираем отступы и поля */
+*,
+*::before,
+*::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+/* Убираем стандартные стили для списка */
+ul,
+ol {
+   list-style: none;
+}
+
+/* Убираем ссылки с подчеркивания и стандартный цвет */
+a {
+   text-decoration: none;
+   color: inherit;
+}
+
+/* Убираем таблицы с жирными границами */
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+
+/* Убираем поля у форм */
+input,
+textarea,
+select,
+button {
+   border: none;
+   outline: none;
+   background: transparent;
+}
+
+/* Убираем фон и стили у кнопок */
+button {
+   background: none;
+   cursor: pointer;
+}
+
+/* Убираем дефолтные стили у заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-size: inherit;
+   font-weight: inherit;
+}
+
+/* Убираем дефолтный стиль у изображения */
+img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+/* Убираем дефолтные отступы у абзацев */
+p {
+   margin: 0;
+}
+
+/* Настройка шрифта по умолчанию для всего документа */
+body {
+   font-family: Arial, sans-serif;
+   line-height: 1.5;
+}
+
+/* Сброс стилей для кнопок и ссылок */
+button,
+a {
+   cursor: pointer;
+}

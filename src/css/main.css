@@ -1,0 +1,1096 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Gravitas+One&family=Pacifico&family=Pixelify+Sans:wght@400..700&family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Pacifico&family=Pixelify+Sans:wght@400..700&family=Russo+One&display=swap");
+.board {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  max-height: 45vw;
+  min-height: 45vw;
+  margin-top: 2%;
+  background-color: rgb(187, 169, 131);
+  gap: 10px;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px 10px 20px 10px;
+  margin-left: 5%;
+}
+.board__step {
+  margin-left: -2%;
+  margin-top: 1%;
+  width: 100px;
+  color: antiquewhite;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+.board__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 70%;
+  max-width: 70%;
+  height: 45vw;
+}
+.board__close {
+  margin-top: 2%;
+}
+.board__cube {
+  min-width: 14%;
+  max-width: 14%;
+  height: 4.8vw;
+  margin: 0px 5px 0px 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.board__chess {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 83%;
+  height: 4vw;
+  border-radius: 50%;
+}
+.board__counter {
+  margin-top: 20px;
+  background-color: rgb(202, 197, 153);
+  height: 50%;
+  border-radius: 10px;
+}
+.board__blackCount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.board__whiteCount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.board__count {
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 700;
+}
+.board__player1 {
+  color: "white";
+  font-size: 20px;
+}
+.board__player2 {
+  color: "white";
+  font-size: 20px;
+}
+.board__step {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 230px;
+  margin-top: 3%;
+}
+
+.component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 50px;
+  width: 250%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+
+/* reset.scss */
+/* Убираем отступы и поля */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* Убираем стандартные стили для списка */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Убираем ссылки с подчеркивания и стандартный цвет */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Убираем таблицы с жирными границами */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Убираем поля у форм */
+input,
+textarea,
+select,
+button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+/* Убираем фон и стили у кнопок */
+button {
+  background: none;
+  cursor: pointer;
+}
+
+/* Убираем дефолтные стили у заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Убираем дефолтный стиль у изображения */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Убираем дефолтные отступы у абзацев */
+p {
+  margin: 0;
+}
+
+/* Настройка шрифта по умолчанию для всего документа */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Сброс стилей для кнопок и ссылок */
+button,
+a {
+  cursor: pointer;
+}
+
+.mainPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.mainPage__title {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.mainPage__titleT {
+  font-family: "Beau Rivage", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+  text-shadow: 10px 10px 4px white;
+}
+.mainPage__titleD {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 30px;
+  position: absolute;
+  color: rgb(197, 197, 70);
+  top: 75px;
+  left: 240px;
+  width: 300px;
+  -webkit-animation: text 6s linear infinite;
+          animation: text 6s linear infinite;
+  -webkit-transform: rotate(-30deg);
+      -ms-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+}
+.mainPage__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20%;
+  gap: 17px 0px;
+}
+.mainPage__gameRulesBtn {
+  background-color: gray;
+  width: 500px;
+  height: 60px;
+  border: 2px solid black;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+.mainPage__gameOnlineBtn {
+  background-color: gray;
+  width: 500px;
+  height: 60px;
+  border: 2px solid black;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+.mainPage__gameFriendBtn {
+  background-color: gray;
+  width: 500px;
+  height: 60px;
+  border: 2px solid black;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+.mainPage__gameRulesBtn:hover {
+  background-color: rgb(77, 75, 75);
+}
+.mainPage__gameOnlineBtn:hover {
+  background-color: rgb(77, 75, 75);
+}
+.mainPage__gameFriendBtn:hover {
+  background-color: rgb(77, 75, 75);
+}
+.mainPage__programmer {
+  position: absolute;
+  top: 88%;
+  left: 80%;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+
+.rules {
+  background-color: white;
+  background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 74%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 74%, black 75%, black);
+  background-size: 100px 100px;
+  background-position: 0 0, 50px 50px;
+  width: 80%;
+  position: absolute;
+  left: 10%;
+  top: 5%;
+  padding: 20px 20px 20px 20px;
+  color: rgb(255, 255, 255);
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.rules__title {
+  text-align: center;
+  color: yellow;
+  font-size: 45px;
+  background-color: rgb(82, 78, 74);
+}
+.rules__rules {
+  font-size: 25px;
+  background-color: rgba(82, 78, 74, 0.9);
+  padding: 10px 10px 10px 10px;
+}
+
+@-webkit-keyframes text {
+  0% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+}
+
+@keyframes text {
+  0% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+}
+.list {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: rgb(255, 255, 255);
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.list__title {
+  font-size: 40px;
+}
+.list__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30%;
+  gap: 10px;
+  background-color: rgba(59, 58, 58, 0.748);
+  padding: 20px 20px 20px 20px;
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+.list__list::-webkit-scrollbar {
+  background-color: rgb(161, 159, 159);
+  width: 10px;
+  height: 5px;
+  margin: 2px;
+}
+.list__list::-webkit-scrollbar-thumb {
+  background-color: rgb(228, 228, 228);
+}
+.list__item {
+  height: 70px;
+  border: 2px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 20px 20px 20px 20px;
+  gap: 0 15px;
+  font-size: 19px;
+  background-color: rgba(128, 128, 128, 0.748);
+}
+.list__nameInfo {
+  position: absolute;
+  top: 88%;
+  left: 2%;
+  font-size: 25px;
+}
+.list__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 110%;
+  gap: 0px 40px;
+  margin-top: 20%;
+}
+.list__idBtn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 18px;
+  background-color: rgba(128, 128, 128, 0.671);
+}
+.list__joinBtn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 40%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.671);
+}
+.list__onlineInfo {
+  position: absolute;
+  top: 90%;
+  left: 82%;
+  font-size: 23px;
+}
+.list__closeBtn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.671);
+}
+.list__createBtn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.671);
+}
+.list__createBtn:hover {
+  background-color: rgb(77, 75, 75);
+}
+.list__closeBtn:hover {
+  background-color: rgb(77, 75, 75);
+}
+
+.createServer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.createServer__information {
+  font-size: 50px;
+  color: white;
+}
+.createServer__inputInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.createServer__inputTitle {
+  font-size: 40px;
+  color: gray;
+}
+.createServer__input {
+  width: 150%;
+  background-color: black;
+  border: 4px solid grey;
+  height: 70px;
+  color: white;
+  font-size: 25px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  padding: 5px 5px 5px 5px;
+}
+.createServer__readyButton {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.771);
+}
+.createServer__backButton {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.771);
+}
+.createServer__readyButton:hover {
+  background-color: rgb(77, 75, 75);
+}
+.createServer__backButton:hover {
+  background-color: rgb(77, 75, 75);
+}
+.createServer__input:focus {
+  border: 3px solid grey;
+}
+
+.joinById {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.joinById__information {
+  font-size: 50px;
+  color: white;
+}
+.joinById__inputInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.joinById__inputTitle {
+  font-size: 40px;
+  color: gray;
+}
+.joinById__input {
+  width: 150%;
+  background-color: black;
+  border: 4px solid grey;
+  height: 70px;
+  color: white;
+  font-size: 25px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  padding: 5px 5px 5px 5px;
+}
+.joinById__readyButton {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.771);
+}
+.joinById__backButton {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.771);
+}
+.joinById__readyButton:hover {
+  background-color: rgb(77, 75, 75);
+}
+.joinById__backButton:hover {
+  background-color: rgb(77, 75, 75);
+}
+.joinById__input:focus {
+  border: 3px solid grey;
+}
+
+@media (max-width: 1550px) {
+  .board {
+    max-width: 55%;
+    max-height: 15vw;
+    min-height: 42vw;
+    margin-left: 0%;
+  }
+  .board__row {
+    min-width: 75%;
+    max-width: 70%;
+    height: 30vw;
+  }
+  .board__cube {
+    min-width: 14%;
+    max-width: 14%;
+    height: 4vw;
+    width: 80%;
+    margin: 0px 5px 0px 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .board__chess {
+    width: 73%;
+    height: 3.2vw;
+    background-color: aqua;
+  }
+  .board__step {
+    margin-left: 0%;
+  }
+  .component {
+    gap: 50px;
+    width: 200%;
+  }
+}
+@media (max-width: 1120px) {
+  .board {
+    max-width: 35%;
+  }
+  .board__step {
+    margin-left: 7%;
+  }
+  .board__counter {
+    margin-left: 5%;
+  }
+  .component {
+    gap: 0px;
+    max-width: 220%;
+  }
+}
+@media (max-width: 450px) {
+  .board {
+    margin-top: 0px;
+    max-width: 170%;
+    justify-self: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+    max-height: 85vw;
+    gap: 5px;
+    margin-right: 5%;
+  }
+  .board__row {
+    width: 80%;
+    height: 75vw;
+    background-color: rgb(187, 169, 131);
+  }
+  .board__cube {
+    min-width: 10%;
+    max-width: 10%;
+    height: 9vw;
+    width: 80%;
+    margin: 0px 3px 0px 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .board__chess {
+    width: 73%;
+    height: 4vw;
+    background-color: aqua;
+  }
+  .board__step {
+    margin-left: 30%;
+  }
+  .board__playersInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+    justify-self: center;
+  }
+  .board__close {
+    position: absolute;
+    top: 1%;
+    left: 80%;
+  }
+  .board__counter {
+    max-height: 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    width: 18%;
+    gap: 0%;
+    position: absolute;
+    top: 82%;
+    left: 69%;
+    background-color: transparent;
+    color: white;
+  }
+  .board__whiteCount {
+    gap: 10px 0px;
+    margin-top: 10px;
+  }
+  .component {
+    gap: 50px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 210%;
+    height: 100%;
+  }
+  .mainPage__programmer {
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    color: white;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 25px;
+  }
+  .mainPage__gameRulesBtn {
+    width: 350px;
+  }
+  .mainPage__gameOnlineBtn {
+    background-color: gray;
+    width: 350px;
+  }
+  .mainPage__gameFriendBtn {
+    background-color: gray;
+    width: 350px;
+  }
+  .list__list {
+    margin-top: 3%;
+    max-height: 300px;
+    width: 100%;
+  }
+  .list__item {
+    height: 60px;
+    gap: 0 5px;
+    font-size: 14px;
+  }
+  .list__btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    gap: 5px;
+    margin-top: 3%;
+  }
+  .list__idBtnS {
+    width: 90%;
+  }
+  .list__joinBtn {
+    width: 90%;
+  }
+  .list__joinBtnS {
+    width: 90%;
+  }
+  .list__closeBtnS {
+    width: 90%;
+  }
+  .list__createBtn {
+    display: inline-block;
+  }
+  .list__createBtnS {
+    width: 90%;
+  }
+  .list__onlineInfo {
+    font-size: 15px;
+  }
+  .list__nameInfo {
+    top: 90%;
+    font-size: 17px;
+    width: 200px;
+  }
+  .joinById {
+    width: 100%;
+    gap: 30px;
+  }
+  .joinById__information {
+    font-size: 40px;
+  }
+  .joinById__inputInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 10px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .joinById__inputTitle {
+    font-size: 30px;
+    color: gray;
+  }
+  .joinById__input {
+    width: 100%;
+  }
+  .createServer__input {
+    width: 100%;
+  }
+}
+html {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background: url("../freepik__expand__41379.png") bottom;
+  background-size: 100%;
+  background-position-y: 0%;
+}
+
+.AppClass {
+  width: 100%;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+@-webkit-keyframes board {
+  0% {
+    background-size: 150%;
+    background-position-y: 0%;
+    background-position-x: 0%;
+  }
+  30% {
+    background-size: 150%;
+    background-position-y: 150%;
+    background-position-x: 100%;
+  }
+  100% {
+    background-size: 150%;
+    background-position-y: 300%;
+    background-position-x: 0%;
+  }
+}
+
+@keyframes board {
+  0% {
+    background-size: 150%;
+    background-position-y: 0%;
+    background-position-x: 0%;
+  }
+  30% {
+    background-size: 150%;
+    background-position-y: 150%;
+    background-position-x: 100%;
+  }
+  100% {
+    background-size: 150%;
+    background-position-y: 300%;
+    background-position-x: 0%;
+  }
+}

@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Gravitas+One&family=Pacifico&family=Pixelify+Sans:wght@400..700&family=Russo+One&display=swap");
+.board {
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+
+ max-height: 45vw;
+ min-height: 45vw;
+ margin-top: 2%;
+ background-color: rgb(187, 169, 131);
+ gap: 10px;
+ justify-self: center;
+ align-self: center;
+ align-items: center;
+ justify-content: center;
+ padding: 20px 10px 20px 10px;
+ margin-left: 5%;
+ &__step {
+  margin-left: -2%;
+  margin-top: 1%;
+  width: 100px;
+  color: antiquewhite;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+ }
+ &__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: 70%;
+  max-width: 70%;
+  height: 45vw;
+ }
+ &__close {
+  margin-top: 2%;
+ }
+ &__cube {
+  min-width: 14%;
+  max-width: 14%;
+  height: 4.8vw;
+
+  margin: 0px 5px 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ &__chess {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 83%;
+  height: 4vw;
+  border-radius: 50%;
+ }
+
+ &__counter {
+  margin-top: 20px;
+  background-color: rgb(202, 197, 153);
+  height: 50%;
+  border-radius: 10px;
+ }
+ &__blackCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+ &__whiteCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+
+ &__count {
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 700;
+ }
+ &__player1 {
+  color: "white";
+  font-size: 20px;
+ }
+ &__player2 {
+  color: "white";
+  font-size: 20px;
+ }
+ &__step {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 230px;
+  margin-top: 3%;
+ }
+}
+.component {
+ display: flex;
+ gap: 50px;
+ width: 250%;
+ justify-content: center;
+ align-items: center;
+ justify-self: center;
+ align-items: start;
+}
