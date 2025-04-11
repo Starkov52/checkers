@@ -39,7 +39,8 @@ const ServerBoard = () => {
  const [point, setPoint] = useState<{ white: number; black: number }>(points);
  const stepRedux: boolean = useSelector((state: RootState) => state.gameServerBoard.step);
  const [step, setStep] = useState<boolean>(stepRedux);
- const state: Server = useSelector((state: RootState) => state.gameServerBoard, shallowEqual);
+ const stateRedux: Server = useSelector((state: RootState) => state.gameServerBoard, shallowEqual);
+ const [state, setState] = useState(stateRedux);
 
  const [color, setColor] = React.useState<boolean>(state.step);
 
@@ -56,12 +57,18 @@ const ServerBoard = () => {
   if (JSON.stringify(board) !== JSON.stringify(reduxBoard)) {
    setBoard(reduxBoard);
   }
- }, [reduxBoard]);
+ }, [reduxBoard, stepRedux]);
  React.useEffect(() => {
   if (JSON.stringify(step) !== JSON.stringify(stepRedux)) {
    setStep(stepRedux);
   }
- }, [stepRedux]);
+ }, [stepRedux, stateRedux]);
+ React.useEffect(() => {
+  if (JSON.stringify(state) !== JSON.stringify(stateRedux)) {
+   setState(stateRedux);
+  }
+ }, [stateRedux, stepRedux]);
+
  React.useEffect(() => {
   console.log("hrelloo");
  }, [state.board]);
@@ -482,21 +489,31 @@ const ServerBoard = () => {
            board[newStep[1].a - 2][newStep[1].e - 2].check.colorChess === false)
          ) {
           console.log("Еще 1 ход");
+          const newServer: Server = {
+           board: newBoard,
+           hostName: state.hostName,
+           serverName: state.serverName,
+           step: state.step,
+           guest: state.guest,
+           id: state.id,
+           serverState: state.serverState,
+          };
+          dispatch(postF({ path: `${servers}`, body: newServer }));
          } else {
           setStep(!step);
+          const newServer: Server = {
+           board: newBoard,
+           hostName: state.hostName,
+           serverName: state.serverName,
+           step: !state.step,
+           guest: state.guest,
+           id: state.id,
+           serverState: state.serverState,
+          };
+          dispatch(postF({ path: `${servers}`, body: newServer }));
          }
          soundDeath.play();
          setBoard(newBoard);
-         const newServer: Server = {
-          board: newBoard,
-          hostName: state.hostName,
-          serverName: state.serverName,
-          step: !state.step,
-          guest: state.guest,
-          id: state.id,
-          serverState: state.serverState,
-         };
-         dispatch(postF({ path: `${servers}`, body: newServer }));
         }
        }
        return [];
@@ -950,7 +967,7 @@ const ServerBoard = () => {
    console.log("КОННЕКТ", state, servers);
 
    refetch();
-  }, 5000);
+  }, 7500);
 
   return () => clearInterval(interval);
  }, [dispatch, servers]);

@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import click from "../minecraft_click.mp3";
 const Rules = () => {
  return (
-  <div className="rules">
-   <Link to="/">
+  <div data-testid="rules" className="rules">
+   <Link data-testid="rulesClose" to="/">
     <AiOutlineCloseSquare size="50" color="black"></AiOutlineCloseSquare>
    </Link>
    <h1 className="rules__title">Правила</h1>

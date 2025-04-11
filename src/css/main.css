@@ -474,6 +474,10 @@ a {
 .list__list::-webkit-scrollbar-thumb {
   background-color: rgb(228, 228, 228);
 }
+.list__titleItem {
+  width: 80%;
+  margin-left: 14%;
+}
 .list__item {
   height: 70px;
   border: 2px solid black;
@@ -489,8 +493,9 @@ a {
   width: 100%;
   padding: 20px 20px 20px 20px;
   gap: 0 15px;
-  font-size: 19px;
+  font-size: 14px;
   background-color: rgba(128, 128, 128, 0.748);
+  position: relative;
 }
 .list__nameInfo {
   position: absolute;
@@ -541,6 +546,11 @@ a {
   color: white;
   font-size: 20px;
   background-color: rgba(128, 128, 128, 0.671);
+}
+.list__icon {
+  position: absolute;
+  left: 2%;
+  top: 20%;
 }
 .list__onlineInfo {
   position: absolute;
@@ -842,8 +852,8 @@ a {
     background-color: rgb(187, 169, 131);
   }
   .board__cube {
-    min-width: 10%;
-    max-width: 10%;
+    min-width: 11.8%;
+    max-width: 11.8%;
     height: 9vw;
     width: 80%;
     margin: 0px 3px 0px 3px;

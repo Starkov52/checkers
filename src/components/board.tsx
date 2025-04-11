@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import { CiMedal } from "react-icons/ci";
 import Counter from "./counter";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import type { RootState } from "../state/store";
+import { RootDispatxh, RootState } from "../state/store";
 import { calculatePoints } from "../state/slices/boardCounterSlice";
 import wood from "../painted-wooden-plank-textured-backdrop.jpg";
 import { AiOutlineCloseSquare } from "react-icons/ai";
@@ -14,7 +14,10 @@ export type Cube = { color: string; check: Check; isSelected: boolean };
 export type Row = Cube[];
 export type Board = Row[];
 import death from "../inecraft_damage.mp3";
-export enum chess {
+import store from "../state/store";
+import { updateBoardLocal } from "../state/slices/boardGameslice";
+
+enum chess {
  default = "default",
  king = "king",
 }
@@ -23,6 +26,7 @@ export type Check = {
  colorChess: "white" | "black" | boolean;
 };
 const soundClick = new Audio(click);
+
 const Board = () => {
  const soundDeath = new Audio(death);
  const points = useSelector((state: RootState) => state.gameCounter);
@@ -32,8 +36,25 @@ const Board = () => {
  const [step, setStep] = useState<boolean>(true);
  const state = useSelector((state: RootState) => state.gameBoard);
  const [board, setBoard] = useState<Board>(state);
- const dispatch = useDispatch();
- const handleMakeStep = (event: React.MouseEvent<HTMLDivElement>) => {
+ const dispatch = useDispatch<RootDispatxh>();
+ React.useEffect(() => {
+  console.log("renderBoard", board);
+  dispatch(calculatePoints(board));
+ }, [board]);
+ React.useEffect(() => {
+  setPoint(points);
+ }, [points]);
+ React.useEffect(() => {
+  document.documentElement.style.background = `url(${dosk}) center / cover`;
+  document.documentElement.style.animation = "none";
+ }, []);
+ React.useEffect(() => {
+  if (JSON.stringify(state) !== JSON.stringify(board)) {
+   dispatch(updateBoardLocal(board));
+  }
+ }, [state, board]);
+
+ const handleMakeStep = (event: React.MouseEvent<HTMLDivElement>, board: Board, setCountClick: any, setHistorySteps: any, step: any, setStep: any, setBoard: any, soundDeath: any) => {
   const element = event.currentTarget;
   const eventClickValue = element.getAttribute("data-f");
   const eventClickColor = element.getAttribute("data-a");
@@ -424,6 +445,7 @@ const Board = () => {
          }
          soundDeath.play();
          setBoard(newBoard);
+         dispatch(updateBoardLocal(newBoard));
         }
        }
        return [];
@@ -823,34 +845,23 @@ const Board = () => {
   }
  };
 
- React.useEffect(() => {
-  console.log("renderBoard", board);
-  dispatch(calculatePoints(board));
- }, [board]);
- React.useEffect(() => {
-  setPoint(points);
- }, [points]);
- React.useEffect(() => {
-  document.documentElement.style.background = `url(${dosk}) center / cover`;
-  document.documentElement.style.animation = "none";
- }, []);
-
  return (
-  <div className="component">
+  <div data-testid="boardd" className="component">
    <p className="board__step">Ходят {step ? "белые" : "черные"}</p>
-   <Link className="board__close" to="/">
+   <Link className="board__close" data-testid="close" to="/">
     <AiOutlineCloseSquare size="70" color="black"></AiOutlineCloseSquare>
    </Link>
-   <div className="board">
+   <div className="board" data-testid="board">
     {board.map((row: Row, index: number) => {
      return (
       <div key={index} className="board__row">
        {row.map((cube: Cube, indexG: number) => {
         return (
          <div
+          data-testid={`cell-${index}-${indexG}`}
           data-a={cube.color}
           data-f={JSON.stringify({ a: index, e: indexG, color: cube.color })}
-          onClick={(event) => handleMakeStep(event)}
+          onClick={(event) => handleMakeStep(event, board, setCountClick, setHistorySteps, step, setStep, setBoard, soundDeath)}
           key={indexG}
           style={{
            background: cube.color,

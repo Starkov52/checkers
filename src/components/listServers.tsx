@@ -58,7 +58,7 @@ const ListServers = () => {
  console.log(data, "ДАННЫЕ");
 
  return (
-  <div className="list">
+  <div data-testid="server" className="list">
    <p className="list__nameInfo">Твое имя в данной сессии: {name}</p>
    <h1 className="list__title">Сетевая игра</h1>
    <div className="list__list">
@@ -84,7 +84,9 @@ const ListServers = () => {
         key={index}
         className="list__item"
        >
-        <FaChessBoard color="black" size="40"></FaChessBoard>
+        <div className="list__icon">
+         <FaChessBoard color="black" size="40"></FaChessBoard>
+        </div>
         <h3 className="list__titleItem">{item.serverName}</h3>
         <h3 className="list__titleItemAuthor">создатель: {item.hostName}</h3>
         <p className="list__players">1/2</p>
@@ -115,6 +117,7 @@ const ListServers = () => {
     </Link>
     <Link className="list__closeBtnS" to="/">
      <button
+      data-testid="serverClose"
       onClick={() => {
        soundClick.play();
       }}

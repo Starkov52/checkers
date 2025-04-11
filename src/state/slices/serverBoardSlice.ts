@@ -121,7 +121,7 @@ const serverSlice = createSlice({
     state.serverState.loading = true;
    })
    .addCase(getF.fulfilled, (state, action: PayloadAction<Server>) => {
-    console.log("🔥 Данные получены из getF:", action.payload); // Лог результата запроса
+    console.log("🔥 Данные получены из getF:", action.payload);
 
     return {
      ...state,

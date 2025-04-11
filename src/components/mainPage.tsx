@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import photo from "../freepik__expand__41379.png";
-import backgroundSound from "../06. Moog City 2.mp3";
+import backgroundSound from "../C418 Mice On Venus.mp3";
 import click from "../minecraft_click.mp3";
 const MainPage = () => {
  const [show, setShow] = React.useState<boolean>(false);
@@ -19,7 +19,7 @@ const MainPage = () => {
   sound.play();
  };
  return (
-  <div className="mainPage">
+  <div data-testid="mainPage" className="mainPage">
    <div className="mainPage__title">
     <h1 ref={title} onClick={f} className="mainPage__titleT">
      Checkers
@@ -29,6 +29,7 @@ const MainPage = () => {
    <div className="mainPage__buttons">
     <Link to="/localGame">
      <button
+      data-testid="localGame"
       onClick={() => {
        sound.volume = 1;
        soundClick.play();
@@ -41,6 +42,7 @@ const MainPage = () => {
     </Link>
     <Link to="/listOnlineGame">
      <button
+      data-testid="serverBtn"
       onClick={() => {
        f;
        soundClick.play();
@@ -52,6 +54,7 @@ const MainPage = () => {
     </Link>
     <Link to="/rules">
      <button
+      data-testid="rulesBtn"
       onClick={() => {
        f;
        soundClick.play();

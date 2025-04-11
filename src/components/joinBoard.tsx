@@ -30,8 +30,8 @@ const soundClick = new Audio(click);
 const JoinBoard = () => {
  const { id } = useParams();
  const { data, error, isLoading } = useGetDataByIdQuery(id!);
- const state = useSelector((state: RootState) => state.gameServerBoard);
-
+ const stateRedux = useSelector((state: RootState) => state.gameServerBoard);
+ const [state, setState] = useState(stateRedux);
  console.log(data?.board, "board?");
  const soundDeath = new Audio(death);
  const points = useSelector((state: RootState) => state.gameCounter);
@@ -61,12 +61,17 @@ const JoinBoard = () => {
   if (JSON.stringify(reduxBoard) !== JSON.stringify(board)) {
    setBoard(reduxBoard);
   }
- }, [reduxBoard]);
+ }, [reduxBoard, reduxStep]);
  React.useEffect(() => {
   if (JSON.stringify(reduxStep) !== JSON.stringify(step)) {
    setStep(reduxStep);
   }
- }, [reduxStep]);
+ }, [reduxStep, stateRedux]);
+ React.useEffect(() => {
+  if (JSON.stringify(state) !== JSON.stringify(stateRedux)) {
+   setState(stateRedux);
+  }
+ }, [stateRedux, reduxStep]);
  const handleMakeStep = (event: React.MouseEvent<HTMLDivElement>) => {
   const element = event.currentTarget;
   const eventClickValue = element.getAttribute("data-f");
@@ -289,21 +294,31 @@ const JoinBoard = () => {
           board[newStep[1].a - 2][newStep[1].e - 2].check.colorChess === false)
         ) {
          console.log("Еще 1 ход");
+         const newServer: Server = {
+          board: newBoard,
+          hostName: state.hostName,
+          serverName: state.serverName,
+          step: state.step,
+          guest: state.guest,
+          id: state.id,
+          serverState: state.serverState,
+         };
+         dispatch(postF({ path: `${id}`, body: newServer }));
         } else {
          setStep(!step);
+         const newServer: Server = {
+          board: newBoard,
+          hostName: state.hostName,
+          serverName: state.serverName,
+          step: !state.step,
+          guest: state.guest,
+          id: state.id,
+          serverState: state.serverState,
+         };
+         dispatch(postF({ path: `${id}`, body: newServer }));
         }
         soundDeath.play();
         setBoard(newBoard);
-        const newServer: Server = {
-         board: newBoard,
-         hostName: state.hostName,
-         serverName: state.serverName,
-         step: !state.step,
-         guest: state.guest,
-         id: state.id,
-         serverState: state.serverState,
-        };
-        dispatch(postF({ path: `${id}`, body: newServer }));
        }
        return [];
       } else if (board[newStep[0].a][newStep[0].e].check.colorChess === "white" && board[newStep[0].a][newStep[0].e].check.chessStatus !== "king" && step && color === true) {
@@ -874,6 +889,7 @@ const JoinBoard = () => {
           id: state.id,
           serverState: state.serverState,
          };
+         soundDeath.play();
          dispatch(postF({ path: `${id}`, body: newServer }));
         } else {
          setStep(!step);
@@ -887,7 +903,6 @@ const JoinBoard = () => {
           serverState: state.serverState,
          };
          dispatch(postF({ path: `${id}`, body: newServer }));
-         soundDeath.play();
         }
         setBoard(newBoard);
 
@@ -923,7 +938,7 @@ const JoinBoard = () => {
  React.useEffect(() => {
   const interval = setInterval(() => {
    dispatch(getF({ path: id! }));
-  }, 5000);
+  }, 7500);
   return () => {
    clearInterval(interval);
   };

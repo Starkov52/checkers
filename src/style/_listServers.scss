@@ -39,6 +39,8 @@
  }
 
  &__titleItem {
+  width: 80%;
+  margin-left: 14%;
  }
  &__titleItemAuthor {
  }
@@ -54,8 +56,10 @@
   width: 100%;
   padding: 20px 20px 20px 20px;
   gap: 0 15px;
-  font-size: 19px;
+  font-size: 14px;
+
   background-color: rgba(128, 128, 128, 0.748);
+  position: relative;
  }
  &__nameInfo {
   position: absolute;
@@ -97,6 +101,11 @@
   color: white;
   font-size: 20px;
   background-color: rgba(128, 128, 128, 0.671);
+ }
+ &__icon {
+  position: absolute;
+  left: 2%;
+  top: 20%;
  }
  &__onlineInfo {
   position: absolute;
