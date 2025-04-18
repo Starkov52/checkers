@@ -1,7 +1,7 @@
 import Board from "../components/board";
 import React from "react";
 import App from "../App";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
 import { resetBoard } from "../state/slices/boardGameslice";
@@ -10,9 +10,14 @@ import dosk from "../2c1713eb-cfa5-48b2-88a3-603be26f86a4.png";
 import Rules from "../components/rules";
 import ListServers from "../components/listServers";
 import { stateBoard } from "../state/slices/boardGameslice";
+import CreateServer from "../components/createServer";
 import store, { RootDispatxh } from "../state/store";
+import ServerBoard from "../components/serverBoard";
+import JoinBoard from "../components/joinBoard";
+import JoinById from "../components/joinById";
 import userEvent from "@testing-library/user-event";
 import MainPage from "../components/mainPage";
+import { hostname } from "os";
 enum chess {
  default = "default",
  king = "king",
@@ -227,18 +232,23 @@ describe("first", () => {
 });
 describe("allRoutingTests", () => {
  beforeEach(() => {
-  render(
+  const { asFragment } = render(
    <Provider store={store}>
     <MemoryRouter initialEntries={["/"]}>
      <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/localGame" element={<Board></Board>}></Route>
+      <Route path="/" element={<MainPage></MainPage>}></Route>
       <Route path="/rules" element={<Rules></Rules>}></Route>
+      <Route path="/localGame" element={<Board></Board>}></Route>
       <Route path="/listOnlineGame" element={<ListServers></ListServers>}></Route>
+      <Route path="/listOnlineGame/createServer" element={<CreateServer></CreateServer>}></Route>
+      <Route path="/listOnlineGame/createServer/game" element={<ServerBoard></ServerBoard>}></Route>
+      <Route path="/listOnlineGame/joinServer/:id" element={<JoinBoard></JoinBoard>}></Route>
+      <Route path="/listOnlineGame/joinById" element={<JoinById></JoinById>}></Route>
      </Routes>
     </MemoryRouter>
    </Provider>,
   );
+  expect(asFragment()).toMatchSnapshot();
  });
  test("routing", async () => {
   const mainPage = await screen.getByTestId("mainPage");
@@ -265,5 +275,84 @@ describe("allRoutingTests", () => {
   const serverClose = await screen.getByTestId("serverClose");
   await userEvent.click(serverClose);
   await expect(screen.getByTestId("mainPage")).toBeInTheDocument();
+ });
+ test("testCreateServer", async () => {
+  const serversBtn = await screen.getByTestId("serverBtn");
+  await userEvent.click(serversBtn);
+  const addServerBtn = await screen.getByTestId("addServer");
+  await userEvent.click(addServerBtn);
+  const inputServer = await screen.getByTestId("inputServer");
+
+  expect(inputServer).toBeInTheDocument();
+  await userEvent.type(inputServer, "123");
+
+  expect(inputServer).toHaveValue("123");
+ });
+});
+describe("fetchTests", () => {
+ beforeAll(() => {
+  global.fetch = jest.fn(() =>
+   Promise.resolve({
+    ok: true,
+    json: () =>
+     Promise.resolve([
+      {
+       board: stateBoard,
+       hostName: "Новый Орлеан",
+       serverName: "123123",
+       step: true,
+       guest: null,
+       id: "dqwqwdqwd",
+       serverState: { error: false, loading: false, success: false },
+      },
+      {
+       board: stateBoard,
+       hostName: "Новы12eй Орлеан",
+       serverName: "1232112123",
+       step: true,
+       guest: null,
+       id: "dqwqwdq2112wd",
+       serverState: { error: false, loading: false, success: false },
+      },
+     ]),
+   } as Response),
+  );
+ });
+
+ beforeEach(() => {
+  const { asFragment } = render(
+   <Provider store={store}>
+    <MemoryRouter initialEntries={["/"]}>
+     <Routes>
+      <Route path="/" element={<MainPage></MainPage>}></Route>
+      <Route path="/rules" element={<Rules></Rules>}></Route>
+      <Route path="/localGame" element={<Board></Board>}></Route>
+      <Route path="/listOnlineGame" element={<ListServers></ListServers>}></Route>
+      <Route path="/listOnlineGame/createServer" element={<CreateServer></CreateServer>}></Route>
+      <Route path="/listOnlineGame/createServer/game" element={<ServerBoard></ServerBoard>}></Route>
+      <Route path="/listOnlineGame/joinServer/:id" element={<JoinBoard></JoinBoard>}></Route>
+      <Route path="/listOnlineGame/joinById" element={<JoinById></JoinById>}></Route>
+     </Routes>
+    </MemoryRouter>
+   </Provider>,
+  );
+ });
+ afterEach(() => {
+  jest.restoreAllMocks();
+ });
+ test("one", async () => {
+  // Ждем появления кнопки
+  const mainPage = await screen.getByTestId("mainPage");
+  expect(mainPage).toBeInTheDocument();
+  const serversBtn = await screen.findByTestId("serverBtn");
+  expect(serversBtn).toBeInTheDocument();
+
+  // Клик и ожидание навигации
+  await userEvent.click(serversBtn);
+
+  // Ждем загрузки данных и появления элементов
+  const serverElements = await screen.findAllByTestId("server");
+  await expect(serverElements).toHaveLength(1);
+  await expect(fetch).toHaveBeenCalledTimes(1);
  });
 });

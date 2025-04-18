@@ -25,15 +25,15 @@ const CreateServer = () => {
    <h1 className="createServer__information">Информация о сервере</h1>
    <div className="createServer__inputInfo">
     <h2 className="createServer__inputTitle">Название сервера</h2>
-    <input onChange={(event) => changeInput(event)} value={inputValue} className="createServer__input"></input>
+    <input data-testid="inputServer" onChange={(event) => changeInput(event)} value={inputValue} className="createServer__input"></input>
    </div>
    {inputValue.length > 0 ? (
     <button
+     data-testid="sendServer"
      style={{ color: "green" }}
      onClick={() => {
       navigator("/listOnlineGame/createServer/game");
       soundClick.play();
-
       console.log("ИМЯ", server.serverName);
 
       server.hostName !== "Сервер"

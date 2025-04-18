@@ -1,0 +1,232 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`allRoutingTests routing 1`] = `
+<DocumentFragment>
+  <div
+    class="mainPage"
+    data-testid="mainPage"
+  >
+    <div
+      class="mainPage__title"
+    >
+      <h1
+        class="mainPage__titleT"
+      >
+        Checkers
+      </h1>
+      <h2
+        class="mainPage__titleD"
+      >
+        deluxe edition
+      </h2>
+    </div>
+    <div
+      class="mainPage__buttons"
+    >
+      <a
+        data-discover="true"
+        href="/localGame"
+      >
+        <button
+          class="mainPage__gameFriendBtn"
+          data-testid="localGame"
+        >
+          Игра друг с друaaaa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/listOnlineGame"
+      >
+        <button
+          class="mainPage__gameOnlineBtn"
+          data-testid="serverBtn"
+        >
+          Сетевая игрa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/rules"
+      >
+        <button
+          class="mainPage__gameRulesBtn"
+          data-testid="rulesBtn"
+        >
+          Правила
+        </button>
+      </a>
+    </div>
+    <p
+      class="mainPage__programmer"
+    >
+      By 
+      <span
+        style="color: black;"
+      >
+         Starkov 
+      </span>
+      03.
+      <span
+        style="font-family: monospace; color: black;"
+      >
+        2025
+      </span>
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`allRoutingTests testCreateServer 1`] = `
+<DocumentFragment>
+  <div
+    class="mainPage"
+    data-testid="mainPage"
+  >
+    <div
+      class="mainPage__title"
+    >
+      <h1
+        class="mainPage__titleT"
+      >
+        Checkers
+      </h1>
+      <h2
+        class="mainPage__titleD"
+      >
+        deluxe edition
+      </h2>
+    </div>
+    <div
+      class="mainPage__buttons"
+    >
+      <a
+        data-discover="true"
+        href="/localGame"
+      >
+        <button
+          class="mainPage__gameFriendBtn"
+          data-testid="localGame"
+        >
+          Игра друг с друaaaa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/listOnlineGame"
+      >
+        <button
+          class="mainPage__gameOnlineBtn"
+          data-testid="serverBtn"
+        >
+          Сетевая игрa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/rules"
+      >
+        <button
+          class="mainPage__gameRulesBtn"
+          data-testid="rulesBtn"
+        >
+          Правила
+        </button>
+      </a>
+    </div>
+    <p
+      class="mainPage__programmer"
+    >
+      By 
+      <span
+        style="color: black;"
+      >
+         Starkov 
+      </span>
+      03.
+      <span
+        style="font-family: monospace; color: black;"
+      >
+        2025
+      </span>
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`fetchTests one 1`] = `
+<DocumentFragment>
+  <div
+    class="mainPage"
+    data-testid="mainPage"
+  >
+    <div
+      class="mainPage__title"
+    >
+      <h1
+        class="mainPage__titleT"
+      >
+        Checkers
+      </h1>
+      <h2
+        class="mainPage__titleD"
+      >
+        deluxe edition
+      </h2>
+    </div>
+    <div
+      class="mainPage__buttons"
+    >
+      <a
+        data-discover="true"
+        href="/localGame"
+      >
+        <button
+          class="mainPage__gameFriendBtn"
+          data-testid="localGame"
+        >
+          Игра друг с друaaaa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/listOnlineGame"
+      >
+        <button
+          class="mainPage__gameOnlineBtn"
+          data-testid="serverBtn"
+        >
+          Сетевая игрa
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/rules"
+      >
+        <button
+          class="mainPage__gameRulesBtn"
+          data-testid="rulesBtn"
+        >
+          Правила
+        </button>
+      </a>
+    </div>
+    <p
+      class="mainPage__programmer"
+    >
+      By 
+      <span
+        style="color: black;"
+      >
+         Starkov 
+      </span>
+      03.
+      <span
+        style="font-family: monospace; color: black;"
+      >
+        2025
+      </span>
+    </p>
+  </div>
+</DocumentFragment>
+`;

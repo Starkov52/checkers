@@ -49,7 +49,7 @@ const MainPage = () => {
       }}
       className="mainPage__gameOnlineBtn"
      >
-      Сетевая игра
+      Сетевая игрa
      </button>
     </Link>
     <Link to="/rules">

@@ -68,6 +68,7 @@ const ListServers = () => {
      servers?.map((item: Server, index) => {
       return (
        <div
+        data-testid="item"
         style={{
          backgroundColor:
           selectServer &&
@@ -88,7 +89,9 @@ const ListServers = () => {
          <FaChessBoard color="black" size="40"></FaChessBoard>
         </div>
         <h3 className="list__titleItem">{item.serverName}</h3>
-        <h3 className="list__titleItemAuthor">создатель: {item.hostName}</h3>
+        <h3 data-testid="p" className="list__titleItemAuthor">
+         создатель: {item.hostName}
+        </h3>
         <p className="list__players">1/2</p>
        </div>
       );
@@ -110,6 +113,7 @@ const ListServers = () => {
       onClick={() => {
        soundClick.play();
       }}
+      data-testid="addServer"
       className="list__createBtn"
      >
       Добавить
@@ -126,6 +130,7 @@ const ListServers = () => {
       Назад
      </button>
     </Link>
+
     <Link className="list__idBtnS" to={`${path.pathname}/joinById`}>
      <button
       onClick={() => {

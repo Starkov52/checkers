@@ -5,6 +5,7 @@ test.describe("E2E", () => {
   await page.goto("http://localhost:5173/");
   await expect(page).toHaveTitle("MineCheckers");
  });
+
  test("testTitle", async ({ page }) => {
   await expect(
    page.getByRole("heading", {
@@ -12,13 +13,10 @@ test.describe("E2E", () => {
    }),
   ).toBeVisible();
  });
- test("testRout", async ({ page }) => {
-  await page
-   .getByRole("button", {
-    name: "Игра друг с другом",
-   })
-   .click();
-  await page.getByText("Ходят белые");
+
+ test("testRoute", async ({ page }) => {
+  await page.getByRole("button", { name: "Игра друг с другом" }).click();
+  await expect(page.getByText("Ходят белые")).toBeVisible();
  });
 });
 
